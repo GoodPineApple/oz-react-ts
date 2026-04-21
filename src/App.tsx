@@ -27,6 +27,10 @@ function App() {
   persons.push(person1);
   persons.push({ name: "Jane", age: 21, isStudent: false });
 
+  const getInfo = (person: Person): string => {
+    return `이름: ${person.name} | 나이: ${person.age} | 학생 여부: ${person.isStudent ? "Student" : "Not a student"}`;
+  };
+
   return (
     <>
       <section id="center">
@@ -37,9 +41,9 @@ function App() {
         </div>
         <div>
           <h1>{title}</h1>
-          <p>
-            {person1.name} | {person1.age}
-          </p>
+          {persons.map((person) => (
+            <p key={person.name}>{getInfo(person)}</p>
+          ))}
           <p>{fruits.map((fruit) => fruit + " ")}</p>
           <p>{num}</p>
           <p>{isStudent ? "Student" : "Not a student"}</p>
