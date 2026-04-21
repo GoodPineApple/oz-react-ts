@@ -42,7 +42,11 @@ function App() {
         </div>
         <div>
           <h1>{title}</h1>
-          <Button label="Click me" />
+          <Button
+            label="Click me"
+            size="small"
+            onClick={() => alert("Button clicked")}
+          />
           {persons.map((person) => (
             <p key={person.name}>{getInfo(person)}</p>
           ))}
