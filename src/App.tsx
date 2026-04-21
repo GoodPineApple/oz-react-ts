@@ -1,12 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
 import "./App.css";
 import Button from "./components/Button";
+import UserCard from "./components/UserCard";
+import type { UserList } from "./model/User";
+import { mockUserListPage01 } from "./model/User";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [userList, setUserList] = useState<UserList>();
+
+  // 데이터 가져오기
+  useEffect(() => {
+    const fetchUserList = async () => {
+      // const response = await fetch("https://jsonplaceholder.typicode.com/users");
+      // const data: UserList = await response.json();
+      const data: UserList = mockUserListPage01;
+      setUserList(data);
+    };
+    fetchUserList();
+  }, []);
 
   const title: string = "Get started!!";
   const num: number = 10;
@@ -42,6 +57,9 @@ function App() {
         </div>
         <div>
           <h1>{title}</h1>
+          {userList?.users.map((user) => (
+            <UserCard key={user.id} user={user} />
+          ))}
           <Button
             label="Click me"
             size="small"
