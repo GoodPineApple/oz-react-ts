@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "./assets/vite.svg";
 import heroImg from "./assets/hero.png";
 import "./App.css";
+import Button from "./components/Button";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -41,6 +42,7 @@ function App() {
         </div>
         <div>
           <h1>{title}</h1>
+          <Button label="Click me" />
           {persons.map((person) => (
             <p key={person.name}>{getInfo(person)}</p>
           ))}
